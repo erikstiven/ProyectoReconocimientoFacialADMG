@@ -1,6 +1,6 @@
 import api from "./api";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const API_URL = import.meta.env.VITE_API_URL ?? "";
 
 const getAuthHeader = () => {
   const token = localStorage.getItem("token");
