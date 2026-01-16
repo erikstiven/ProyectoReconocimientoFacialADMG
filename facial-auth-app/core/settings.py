@@ -13,9 +13,12 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 #import dj_database_url
-from dotenv import load_dotenv
 
-load_dotenv()
+try:
+    from dotenv import load_dotenv # type: ignore
+    load_dotenv()
+except ImportError:
+    pass
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -193,31 +196,40 @@ REST_FRAMEWORK = {
 
 
 # CORS Settings
-CORS_ALLOWED_ORIGINS = [
-    "https://facial-auth-website.vercel.app",
-    "https://facial-auth-api-production.up.railway.app",
-    "http://localhost:5173",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:5500",
-    "https://j5plsg6f-5173.use2.devtunnels.ms",
-]
+#CORS_ALLOWED_ORIGINS = [
+#    "https://facial-auth-website.vercel.app",
+#    "https://facial-auth-api-production.up.railway.app",
+#    "http://localhost:5173",
+#    "http://127.0.0.1:3000",
+#    "http://127.0.0.1:5500",
+#    "https://j5plsg6f-5173.use2.devtunnels.ms",
+#]
+CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_CREDENTIALS = True
 
+#CSRF_TRUSTED_ORIGINS = [
+#    "https://facial-auth-website.vercel.app",
+#    "https://facial-auth-api-production.up.railway.app",
+#    "http://localhost:8000",
+#    "http://127.0.0.1:8000",
+#    "http://127.0.0.1:5500",
+#    "http://localhost:5500/",
+#     "https://j5plsg6f-5173.use2.devtunnels.ms",
+#]
 CSRF_TRUSTED_ORIGINS = [
-    "https://facial-auth-website.vercel.app",
-    "https://facial-auth-api-production.up.railway.app",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    "http://127.0.0.1:5500",
-    "http://localhost:5500/",
-     "https://j5plsg6f-5173.use2.devtunnels.ms",
+    "https://*.ngrok-free.app",
+    "https://*.ngrok-free.dev",
 ]
 
 # Configuración de sesión
 SESSION_COOKIE_SAMESITE = "None"
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SAMESITE = "None"
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
